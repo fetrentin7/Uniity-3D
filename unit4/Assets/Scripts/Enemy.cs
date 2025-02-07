@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour
     public float speed = 3.0f;
     private Rigidbody enemyRb;
     private GameObject player;
+
+
     void Start()
     {
         enemyRb = GetComponent<Rigidbody>();
@@ -18,5 +20,10 @@ public class Enemy : MonoBehaviour
     {
         Vector3 lookDirection = (player.transform.position - transform.position).normalized;
         enemyRb.AddForce(lookDirection * speed); //player position - enemy position
+
+        if(transform.position.y < -10)
+        {
+            Destroy(gameObject);
+        }
     }
 }
